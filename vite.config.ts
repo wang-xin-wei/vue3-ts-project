@@ -4,6 +4,10 @@ import eslintPlugin from 'vite-plugin-eslint'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import path from 'path'
 
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   //  插件相关
@@ -15,6 +19,12 @@ export default defineConfig({
     }),
     vueJsx({
       // 配置选项
+    }),
+    AutoImport({
+      resolvers: [ElementPlusResolver()]
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()]
     })
   ],
   //  配置别名 @

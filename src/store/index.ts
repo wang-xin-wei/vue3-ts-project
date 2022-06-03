@@ -3,6 +3,7 @@ import { createStore, Store, useStore as baseUseStore } from 'vuex'
 
 export interface State {
   token: string,
+  isCollapse: boolean
 }
 
 // 定义 injection key
@@ -12,10 +13,15 @@ export const key: InjectionKey<Store<State>> = Symbol('store')
 export const store = createStore<State>({
   state () {
     return {
-      token: ''
+      token: '',
+      isCollapse: false
     }
   },
-  mutations: {}
+  mutations: {
+    setIsCollapse (state, payload) {
+      state.isCollapse = payload
+    }
+  }
 })
 
 // 定义自己的 `useStore` 组合式函数

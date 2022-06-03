@@ -8,6 +8,9 @@ import { store, key } from './store'
 //  global style
 import './styles/index.scss'
 
+// normalize.css
+import 'normalize.css'
+
 //  init and mount
 createApp(App)
   .use(router)
