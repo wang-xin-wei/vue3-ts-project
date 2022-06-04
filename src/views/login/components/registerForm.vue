@@ -95,10 +95,10 @@ const userForm = ref({
   background-color: #fff;
   padding: 20px;
   min-height: 300px;
-  ::v-deep .el-input__wrapper {
+  :deep(.el-input__wrapper) {
     border-radius: 30px !important;
   }
-  ::v-deep .el-input--large {
+  :deep(.el-input--large) {
     font-size: 18px !important;
   }
 }
