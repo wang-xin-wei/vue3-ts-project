@@ -17,8 +17,11 @@
     <div class="panels-container">
       <div class="panel left-panel">
         <div class="content">
+          <h3>加入我们</h3>
+          <p>快来加入我们吧</p>
           <button
             class="btn transparent"
+            @click="signUpMode = !signUpMode"
           >
             去注册
           </button>
@@ -32,8 +35,11 @@
 
       <div class="panel right-panel">
         <div class="content">
+          <h3>已有帐号？</h3>
+          <p>立即登录已有帐号</p>
           <button
             class="btn transparent"
+            @click="signUpMode = !signUpMode"
           >
             去登录
           </button>
@@ -53,66 +59,34 @@ import LoginForm from './components/loginForm.vue'
 import { ref } from 'vue'
 const signUpMode = ref<boolean>(false)
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .container {
   position: relative;
   width: 100%;
   background-color: #fff;
   min-height: 100vh;
   overflow: hidden;
-}
-
-.forms-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.signin-signup {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 75%;
-  width: 44%;
-  transition: 1s 0.7s ease-in-out;
-  display: grid;
-  grid-template-columns: 1fr;
-  z-index: 5;
+  .forms-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    .signin-signup {
+      position: absolute;
+      top: 80%;
+      transform: translate(-50%, -50%);
+      left: 75%;
+      width: 25%;
+      transition: 1s 0.7s ease-in-out;
+      display: grid;
+      grid-template-columns: 1fr;
+      z-index: 5;
+    }
+  }
 }
 
 /* 左右切换动画 */
-.social-text {
-  padding: 0.7rem 0;
-  font-size: 1rem;
-}
-
-.social-media {
-  display: flex;
-  justify-content: center;
-}
-
-.social-icon {
-  height: 46px;
-  width: 46px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0.45rem;
-  color: #333;
-  border-radius: 50%;
-  border: 1px solid #333;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: 0.3s;
-}
-
-.social-icon:hover {
-  color: #4481eb;
-  border-color: #4481eb;
-}
-
 .btn {
   width: 150px;
   background-color: #5995fd;
@@ -212,7 +186,7 @@ const signUpMode = ref<boolean>(false)
   transform: translateX(800px);
 }
 
-/* ANIMATION */
+/* 动画 */
 
 .container.sign-up-mode:before {
   transform: translate(100%, -50%);
@@ -226,6 +200,7 @@ const signUpMode = ref<boolean>(false)
 
 .container.sign-up-mode .signin-signup {
   left: 25%;
+  top:40%;
 }
 
 .container.sign-up-mode form.sign-up-form {
@@ -251,135 +226,6 @@ const signUpMode = ref<boolean>(false)
   pointer-events: all;
 }
 
-@media (max-width: 870px) {
-  .container {
-    min-height: 800px;
-    height: 100vh;
-  }
-  .signin-signup {
-    width: 100%;
-    top: 95%;
-    transform: translate(-50%, -100%);
-    transition: 1s 0.8s ease-in-out;
-  }
-
-  .signin-signup,
-  .container.sign-up-mode .signin-signup {
-    left: 50%;
-  }
-
-  .panels-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
-  }
-
-  .panel {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding: 2.5rem 8%;
-    grid-column: 1 / 2;
-  }
-
-  .right-panel {
-    grid-row: 3 / 4;
-  }
-
-  .left-panel {
-    grid-row: 1 / 2;
-  }
-
-  .image {
-    width: 200px;
-    transition: transform 0.9s ease-in-out;
-    transition-delay: 0.6s;
-  }
-
-  .panel .content {
-    padding-right: 15%;
-    transition: transform 0.9s ease-in-out;
-    transition-delay: 0.8s;
-  }
-
-  .panel h3 {
-    font-size: 1.2rem;
-  }
-
-  .panel p {
-    font-size: 0.7rem;
-    padding: 0.5rem 0;
-  }
-
-  .btn.transparent {
-    width: 110px;
-    height: 35px;
-    font-size: 0.7rem;
-  }
-
-  .container:before {
-    width: 1500px;
-    height: 1500px;
-    transform: translateX(-50%);
-    left: 30%;
-    bottom: 68%;
-    right: initial;
-    top: initial;
-    transition: 2s ease-in-out;
-  }
-
-  .container.sign-up-mode:before {
-    transform: translate(-50%, 100%);
-    bottom: 32%;
-    right: initial;
-  }
-
-  .container.sign-up-mode .left-panel .image,
-  .container.sign-up-mode .left-panel .content {
-    transform: translateY(-300px);
-  }
-
-  .container.sign-up-mode .right-panel .image,
-  .container.sign-up-mode .right-panel .content {
-    transform: translateY(0px);
-  }
-
-  .right-panel .image,
-  .right-panel .content {
-    transform: translateY(300px);
-  }
-
-  .container.sign-up-mode .signin-signup {
-    top: 5%;
-    transform: translate(-50%, 0);
-  }
-}
-
-@media (max-width: 570px) {
-  form {
-    padding: 0 1.5rem;
-  }
-
-  .image {
-    display: none;
-  }
-  .panel .content {
-    padding: 0.5rem 1rem;
-  }
-  .container {
-    padding: 1.5rem;
-  }
-
-  .container:before {
-    bottom: 72%;
-    left: 50%;
-  }
-
-  .container.sign-up-mode:before {
-    bottom: 28%;
-    left: 50%;
-  }
-}
-
 /* 控制login & register显示 */
 form {
   padding: 0rem 5rem;
@@ -396,16 +242,4 @@ form.sign-up-form {
   z-index: 1;
 }
 
-/* register */
-.registerForm {
-  margin-top: 20px;
-  background-color: #fff;
-  padding: 20px 40px 20px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 5px 10px #cccc;
-}
-
-.submit_btn {
-  width: 100%;
-}
 </style>>
