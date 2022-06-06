@@ -16,16 +16,13 @@ export const userLogin = (data:any) => {
   })
 }
 
-export const userInfo = (params:any) => {
+export const userList = () => {
   return request<{
     status: boolean
     msg: string
     data: object
   }>({
     method: 'GET',
-    url: '/admin',
-    params: {
-      id: params
-    }
+    url: '/admin/list'
   })
 }

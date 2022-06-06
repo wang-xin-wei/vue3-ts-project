@@ -12,6 +12,8 @@ import 'nprogress/nprogress.css'
 
 import { store } from '@/store'
 
+import { getPageTitle } from '@/utils/getPageTitle'
+
 //  生命routes的ts类型
 const routes: RouteRecordRaw[] = [
   {
@@ -57,6 +59,8 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   // 进度条 开始
   nprogress.start()
+  // 给页面添加title属性
+  document.title = getPageTitle(to.meta.title)
   // 判断路由是否需要授权以及是否已登录 如果没有，则重定向到登录页面
   if (to.meta.requiresAuth && !store.state.userInfo) {
     return {

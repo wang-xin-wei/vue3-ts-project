@@ -3,12 +3,9 @@
 </template>
 
 <script lang="ts" setup>
-import { userInfo } from '@/api/user'
+import { userList } from '@/api/user'
 
-const params = {
-  id: '1'
-}
-userInfo(params).then((res) => {
+userList().then((res) => {
   console.log(res)
 })
 
