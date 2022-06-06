@@ -10,11 +10,16 @@ import roleRoutes from './modules/role'
 import nprogress from 'nprogress' // @types/nprogress
 import 'nprogress/nprogress.css'
 
+import { store } from '@/store'
+
 //  生命routes的ts类型
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: AppLayout,
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         path: '',
@@ -52,6 +57,14 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   // 进度条 开始
   nprogress.start()
+  // 判断路由是否需要授权以及是否已登录 如果没有，则重定向到登录页面
+  if (to.meta.requiresAuth && !store.state.userInfo) {
+    return {
+      path: '/login',
+      // 保存我们所在的位置，以便以后再来
+      query: { redirect: to.fullPath }
+    }
+  }
 })
 
 // 全局后置守卫

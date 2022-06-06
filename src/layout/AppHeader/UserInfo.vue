@@ -26,18 +26,19 @@
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { CaretBottom } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
+import { store } from '@/store'
 
 const router = useRouter()
 
 const handleLogou = () => {
-  ElMessageBox.confirm('确认退出吗？', '退出提示', {
+  ElMessageBox.confirm('确认退出登录吗？', '退出提示', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning'
   }).then(async () => {
-    // 发起请求退出登录
-
-    // 清除用户登录信息
+    // 清空用户信息以及存储在浏览器中的数据
+    store.commit('setUserInfo', null)
+    // 提示退出成功
     ElMessage({
       type: 'success',
       message: '退出成功!'

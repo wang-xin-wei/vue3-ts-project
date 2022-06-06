@@ -2,6 +2,7 @@
   <el-form
     ref="loginForm"
     :model="userForm"
+    :rules="rules"
     class="loginForm sign-in-form"
   >
     <div class="login_title">
@@ -36,7 +37,9 @@
         type="primary"
         class="submit-btn"
         size="large"
+        :loading="isLoading"
         round
+        @click="handleSubmit"
       >
         登录
       </el-button>
@@ -45,12 +48,76 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { UserFilled, Lock } from '@element-plus/icons-vue'
-const userForm = ref({
-  username: '',
-  password: ''
+import { ElForm, FormRules, ElMessage } from 'element-plus'
+import { userLogin } from '@/api/user'
+
+import { useRouter, useRoute } from 'vue-router'
+import { store } from '@/store/index'
+
+const loginForm = ref < InstanceType<typeof ElForm> | null>(null)
+const isLoading = ref(false)
+
+const router = useRouter()
+const route = useRoute()
+
+// 表单校验规则
+const rules = reactive<FormRules>({
+  username: [
+    { required: true, message: '请输入用户名', trigger: 'blur' }
+  ],
+  password: [
+    {
+      required: true,
+      message: '请输入密码',
+      trigger: 'blur'
+    }
+  ]
 })
+
+const userForm = ref<{
+  username: string
+  password: string
+}>({
+  username: 'admin',
+  password: '123456'
+})
+
+// 用户登录
+const handleSubmit = async () => {
+  const valid = loginForm.value?.validate()
+  if (!valid) {
+    return false
+  }
+  // 开启loading
+  isLoading.value = true
+
+  // 请求登录接口
+  const res = await userLogin(userForm.value).finally(() => {
+    isLoading.value = false
+  })
+  // 存储数据
+  store.commit('setUserInfo', res.data)
+  // 提示登录成功
+  ElMessage({
+    showClose: true,
+    type: 'success',
+    message: res.msg
+  })
+
+  // 判断一下 是否需要重定向 如果路由的参数中包含redirect 则跳转到redirect地址 不包含redirect地址则跳转到首页
+  let redirect = route.query.redirect || '/'
+
+  // 处理 路由类型的问题
+  if (typeof redirect !== 'string') {
+    redirect = '/'
+  }
+
+  // 跳转路由
+  router.replace(redirect)
+}
+
 </script>
 <style lang="scss" scoped>
 /* form */
