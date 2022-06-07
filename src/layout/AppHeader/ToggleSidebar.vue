@@ -1,22 +1,19 @@
 <template>
-  <el-icon
+  <svg-icon
     v-if="$store.state.isCollapse"
     @click="handleCollapse"
-    style="font-size:24px;"
-  >
-    <Expand />
-  </el-icon>
-  <el-icon
+    name="shrink"
+    size="1.5em"
+  />
+  <svg-icon
     v-else
     @click="handleCollapse"
-    style="font-size:24px;"
-  >
-    <Fold />
-  </el-icon>
+    name="launch"
+    size="1.5em"
+  />
 </template>
 
 <script lang="ts" setup>
-import { Expand, Fold } from '@element-plus/icons-vue'
 import { useStore } from '@/store'
 
 const store = useStore()

@@ -4,25 +4,36 @@
 import request from '@/utils/request'
 import type { userInfoIfc } from './types/common'
 
-export const userLogin = (data:any) => {
+export const userLogin = (data: any) => {
   return request<{
-    status: boolean
+    code: number
     msg: string
     data: userInfoIfc
   }>({
     method: 'POST',
-    url: '/admin/login',
+    url: '/login',
     data
   })
 }
 
-export const userList = () => {
+export const getUserInfo = () => {
   return request<{
-    status: boolean
+    code: number
     msg: string
     data: object
   }>({
     method: 'GET',
-    url: '/admin/list'
+    url: '/getUserInfo'
+  })
+}
+
+export const logout = () => {
+  return request<{
+    code: number
+    msg: string
+    data: any
+  }>({
+    method: 'POST',
+    url: '/logout'
   })
 }

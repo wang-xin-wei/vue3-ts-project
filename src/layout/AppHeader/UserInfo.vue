@@ -2,7 +2,7 @@
   <el-dropdown trigger="click">
     <div class="avatar-wrapper">
       <img
-        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+        :src="$store.state.userInfo?.avatar || 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'"
         class="user-avatar"
       >
       <el-icon class="user-avatar-right-icon">
@@ -28,6 +28,8 @@ import { CaretBottom } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { store } from '@/store'
 
+import { logout } from '@/api/user'
+
 const router = useRouter()
 
 const handleLogou = () => {
@@ -36,18 +38,21 @@ const handleLogou = () => {
     cancelButtonText: '取消',
     type: 'warning'
   }).then(async () => {
-    // 清空用户信息以及存储在浏览器中的数据
-    store.commit('setUserInfo', null)
-    // 提示退出成功
-    ElMessage({
-      type: 'success',
-      message: '退出成功!'
-    })
+    const res = await logout()
+    if (res.code === 200) {
+      // 清空用户信息以及存储在浏览器中的数据
+      store.commit('setUserInfo', null)
+      // 提示退出成功
+      ElMessage({
+        type: 'success',
+        message: res.msg
+      })
 
-    // 跳转到登录页
-    router.push({
-      name: 'login'
-    })
+      // 跳转到登录页
+      router.push({
+        name: 'login'
+      })
+    }
   }).catch(() => {
     ElMessage({
       type: 'info',

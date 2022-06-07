@@ -15,8 +15,19 @@ import 'normalize.css'
 import 'element-plus/theme-chalk/el-message.css'
 import 'element-plus/theme-chalk/el-message-box.css'
 
+// 使用svg icon
+import svgIcon from '@/components/svgIcon/iconIndex.vue'
+import 'virtual:svg-icons-register'
+
+// 使用mock
+import { setupProdMockServer } from '../mock'
+if (process.env.NODE_ENV === 'development') {
+  setupProdMockServer()
+}
+
 //  init and mount
 createApp(App)
   .use(router)
   .use(store, key)
+  .component('svg-icon', svgIcon)
   .mount('#app')

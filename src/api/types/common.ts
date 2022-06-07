@@ -1,5 +1,8 @@
 export interface userInfoIfc {
   token: string
   id: number
-  role: number
+  role: string[]
+  username: string
+  nickname: string
+  avatar: string
 }

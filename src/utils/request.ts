@@ -26,7 +26,7 @@ request.interceptors.request.use(function (config) {
 // 响应拦截器
 request.interceptors.response.use(function (response) {
   // 在接口响应之后做些什么 比如code码判断等
-  if (!response.data.status) {
+  if (response.data.code !== 200) {
     ElMessage({
       showClose: true,
       type: 'error',

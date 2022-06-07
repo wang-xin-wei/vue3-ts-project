@@ -10,12 +10,18 @@
     router
   >
     <el-menu-item index="/">
-      <el-icon><HomeFilled /></el-icon>
+      <svg-icon
+        name="home"
+        color="#fff"
+      />
       <span>首页</span>
     </el-menu-item>
     <el-sub-menu index="/promission">
       <template #title>
-        <el-icon><UserFilled /></el-icon>
+        <svg-icon
+          name="admin"
+          color="#fff"
+        />
         <span>管理员</span>
       </template>
       <el-menu-item index="/promission/list">
@@ -24,7 +30,10 @@
     </el-sub-menu>
     <el-sub-menu index="/order">
       <template #title>
-        <el-icon><Document /></el-icon>
+        <svg-icon
+          name="order"
+          color="#fff"
+        />
         <span>订单</span>
       </template>
       <el-menu-item index="/order/list">
@@ -33,7 +42,10 @@
     </el-sub-menu>
     <el-sub-menu index="/category">
       <template #title>
-        <el-icon><Operation /></el-icon>
+        <svg-icon
+          name="category"
+          color="#fff"
+        />
         <span>分类</span>
       </template>
       <el-menu-item index="/category/list">
@@ -42,7 +54,10 @@
     </el-sub-menu>
     <el-sub-menu index="/menu">
       <template #title>
-        <el-icon><Menu /></el-icon>
+        <svg-icon
+          name="menu"
+          color="#fff"
+        />
         <span>菜单</span>
       </template>
       <el-menu-item index="/menu/list">
@@ -51,7 +66,10 @@
     </el-sub-menu>
     <el-sub-menu index="/role">
       <template #title>
-        <el-icon><User /></el-icon>
+        <svg-icon
+          name="role"
+          color="#fff"
+        />
         <span>角色</span>
       </template>
       <el-menu-item index="/role/list">
@@ -60,7 +78,10 @@
     </el-sub-menu>
     <el-sub-menu index="/goods">
       <template #title>
-        <el-icon><Goods /></el-icon>
+        <svg-icon
+          name="goods"
+          color="#fff"
+        />
         <span>商品</span>
       </template>
       <el-menu-item index="/goods/list">
@@ -71,8 +92,6 @@
 </template>
 
 <script setup lang="ts">
-import { HomeFilled, UserFilled, Document, Menu, User, Goods, Operation } from '@element-plus/icons-vue'
-
 </script>
 
 <style scoped>
@@ -93,5 +112,11 @@ import { HomeFilled, UserFilled, Document, Menu, User, Goods, Operation } from '
 
 .el-menu--collapse .el-submenu__title .el-submenu__icon_arrow {
   display: none;
+}
+
+.el-menu .svg-icon {
+  margin-right: 15px;
+  color: #fff !important;
+  fill: #fff !important;
 }
 </style>

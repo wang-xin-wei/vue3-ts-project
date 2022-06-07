@@ -3,12 +3,11 @@
 </template>
 
 <script lang="ts" setup>
-import { userList } from '@/api/user'
+import { getUserInfo } from '@/api/user'
 
-userList().then((res) => {
+getUserInfo().then((res) => {
   console.log(res)
 })
-
 </script>
 
 <style></style>
