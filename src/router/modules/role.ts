@@ -12,7 +12,7 @@ const routes: RouteRecordRaw =
     {
       path: 'list',
       name: 'roleList',
-      component: () => import('@/views/role/roleIndex.vue'),
+      component: () => import('@/views/role/index.vue'),
       meta: {
         title: '角色列表'
       }

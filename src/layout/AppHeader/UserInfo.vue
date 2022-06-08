@@ -5,17 +5,27 @@
         :src="$store.state.userInfo?.avatar || 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'"
         class="user-avatar"
       >
-      <el-icon class="user-avatar-right-icon">
-        <CaretBottom />
-      </el-icon>
+      <span> {{ $store.state.userInfo?.username }} </span>
     </div>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item @click="handleUserInfo">
-          个人中心
+          <span class="dropdown-icon">
+            <svg-icon
+              name="user-center"
+              size="1.5em"
+            />
+            <span class="title">个人中心</span>
+          </span>
         </el-dropdown-item>
         <el-dropdown-item @click="handleLogou">
-          退出登录
+          <span class="dropdown-icon">
+            <svg-icon
+              name="logout"
+              size="1.5em"
+            />
+            <span class="title">退出登录</span>
+          </span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -24,7 +34,6 @@
 
 <script lang="ts" setup>
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { CaretBottom } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { store } from '@/store'
 
@@ -71,11 +80,14 @@ const handleUserInfo = () => {
 .avatar-wrapper {
   margin-top: 5px;
   position: relative;
+  display: flex;
+  align-items: center;
   .user-avatar {
     cursor: pointer;
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 50%;
+    margin-right: 15px;
   }
   .user-avatar-right-icon {
     cursor: pointer;
@@ -84,5 +96,14 @@ const handleUserInfo = () => {
     top: 25px;
     font-size: 12px;
   }
+}
+.dropdown-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+ .title {
+   margin-left: 5px;
+ }
 }
 </style>

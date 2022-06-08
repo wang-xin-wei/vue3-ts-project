@@ -12,7 +12,7 @@ const routes: RouteRecordRaw =
     {
       path: 'list',
       name: 'orderList',
-      component: () => import('@/views/order/orderIndex.vue'),
+      component: () => import('@/views/order/index.vue'),
       meta: {
         title: '订单列表'
       }

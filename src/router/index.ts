@@ -26,7 +26,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         name: 'home',
-        component: () => import('../views/home/indexPage.vue'),
+        component: () => import('../views/home/index.vue'),
         meta: {
           title: '首页'
         }
@@ -42,7 +42,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/login/loginPage.vue'),
+    component: () => import('../views/login/index.vue'),
     meta: {
       title: '登录'
     }

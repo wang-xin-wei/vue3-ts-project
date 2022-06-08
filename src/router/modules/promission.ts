@@ -12,7 +12,7 @@ const routes: RouteRecordRaw =
     {
       path: 'list',
       name: 'userList',
-      component: () => import('@/views/promission/promissionIndex.vue'),
+      component: () => import('@/views/promission/index.vue'),
       meta: {
         title: '管理员列表'
       }

@@ -3,32 +3,11 @@ import Mock from 'mockjs'
 
 export default [
   {
-    url: '/api/getUserInfo',
-    method: 'get',
-    response: () => {
-      return {
-        code: 200,
-        msg: '成功',
-        data: {
-          id: Mock.mock('@id()'),
-          username: 'admin',
-          nickname: 'Mobai',
-          avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-          sex: '1',
-          email: Mock.mock('@email()'),
-          mobile: '15542567889',
-          site: Mock.mock('@county(true)'),
-          role: ['admin'],
-          describe: '超级管理员'
-        }
-      }
-    }
-  },
-  {
     url: '/api/login',
     method: 'post',
-    response: (config) => {
-      const { username, password } = config.body
+    timeout: '200',
+    response: ({ body }) => {
+      const { username, password } = body
       if (username === 'admin' && password === '123456') {
         return {
           code: 200,
@@ -52,8 +31,30 @@ export default [
     }
   },
   {
+    url: '/api/getUserInfo',
+    method: 'get',
+    response: () => {
+      return {
+        code: 200,
+        msg: '成功',
+        data: {
+          id: Mock.mock('@id()'),
+          username: 'admin',
+          nickname: 'Mobai',
+          avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+          sex: '1',
+          email: Mock.mock('@email()'),
+          mobile: '15542567889',
+          site: Mock.mock('@county(true)'),
+          role: ['admin'],
+          describe: '超级管理员'
+        }
+      }
+    }
+  },
+  {
     url: '/api/logout',
-    method: 'post',
+    method: 'get',
     response: () => {
       return {
         code: 200,

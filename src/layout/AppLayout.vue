@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import AppMenu from './compontents/AppMenu.vue'
-import AppHeader from './AppHeader/headerIndex.vue'
+import AppHeader from './AppHeader/index.vue'
 
 </script>
 

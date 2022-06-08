@@ -16,8 +16,11 @@ import 'element-plus/theme-chalk/el-message.css'
 import 'element-plus/theme-chalk/el-message-box.css'
 
 // 使用svg icon
-import svgIcon from '@/components/svgIcon/iconIndex.vue'
+import svgIcon from '@/components/svgIcon/index.vue'
 import 'virtual:svg-icons-register'
+
+// element-plus 暗黑模式
+// import 'element-plus/theme-chalk/dark/css-vars.css'
 
 // 使用mock
 import { setupProdMockServer } from '../mock'

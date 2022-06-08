@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-const isFullscreen = ref(true)
+const isFullscreen = ref<boolean>(true)
 
 const toggleFullScreen = () => {
   if (!document.fullscreenElement) {
@@ -24,4 +24,8 @@ const toggleFullScreen = () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.svg-icon {
+  cursor: pointer;
+}
+</style>
