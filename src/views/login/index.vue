@@ -27,7 +27,7 @@
           </button>
         </div>
         <img
-          src="@/assets/user/log.svg"
+          src="@/assets/user/login.svg"
           class="image"
           alt=""
         >

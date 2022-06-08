@@ -1,13 +1,19 @@
 import { MockMethod } from 'vite-plugin-mock'
 import Mock from 'mockjs'
 
+export interface IReq {
+  body: any
+  query: any
+  headers: any
+}
+
 export default [
   {
     url: '/api/login',
     method: 'post',
     timeout: '200',
-    response: ({ body }) => {
-      const { username, password } = body
+    response: (req: IReq) => {
+      const { username, password } = req.body
       if (username === 'admin' && password === '123456') {
         return {
           code: 200,
@@ -54,7 +60,7 @@ export default [
   },
   {
     url: '/api/logout',
-    method: 'get',
+    method: 'post',
     response: () => {
       return {
         code: 200,
